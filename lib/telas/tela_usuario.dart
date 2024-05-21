@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jogo_do_quiz/telas/tela.quiz.dart';
+import 'package:jogo_do_quiz/telas/tela_quiz.dart';
 
 class TelaUsuario extends StatefulWidget {
   const TelaUsuario({super.key});

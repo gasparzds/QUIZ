@@ -1,34 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:jogo_do_quiz/telas/tela_inicial.dart';
+import 'tela_inicial.dart';  // Certifique-se que o caminho está correto
 
 class TelaResultados extends StatelessWidget {
-  const TelaResultados({super.key});
+  final int score;
+
+  const TelaResultados({super.key, required this.score});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              TextButton(
-                style: TextButton.styleFrom(
-                  textStyle: TextStyle(fontSize: 30),
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const TelaInicial()),
-                  );
-                },
-                child: const Text('SEU RESULTADO FOI..... '
-                        '..... COMEÇAR NOVAMENTE'),
-              ),
-            ],
-          ),
+      appBar: AppBar(
+        title: const Text('Resultados'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Você acertou $score perguntas!',
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Navega de volta para a tela inicial, removendo todas as telas anteriores da pilha
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TelaInicial()),
+                      (Route<dynamic> route) => false,
+                );
+              },
+              child: const Text('Voltar para o Início'),
+            ),
+          ],
         ),
       ),
     );
